@@ -17,6 +17,9 @@ Shader "Common/Cartoon"
         _Shade1("Shade 1", Range(0, 1)) = 0.45
         _Shade2("Shade 2", Range(0, 1)) = 0.75
         _Shade3("Shade 3", Range(0, 1)) = 1.00
+        // we should make a transition between different levels.
+        // otherwise the surface of material will being hard edges.
+        _TransitionWidth("Transition Width", Range(0, 0.1)) = 0.02
 
         // sss
         _SSSColor("SSS Color", Color) = (1, 1, 1, 1)
@@ -118,6 +121,7 @@ Shader "Common/Cartoon"
             float _Shade1;
             float _Shade2;
             float _Shade3;
+            float _TransitionWidth;
 
             sampler2D _SSSMask;
             float4 _SSSMask_ST;
@@ -159,39 +163,17 @@ Shader "Common/Cartoon"
                 float NdotH = saturate(dot(normalDir, halfDir));
                 // each color level
                 float toonLight = _Shade0;
-                if (_StepCount < 3.5)
+                float halfWidth = max(0, _TransitionWidth);
+
+                float t1 = smoothstep(_Threshold1 - halfWidth, _Threshold1 + halfWidth, NdotL);
+                toonLight += (_Shade1 - _Shade0) * t1;
+
+                float t2 = smoothstep(_Threshold2 - halfWidth, _Threshold2 + halfWidth, NdotL);
+                toonLight += (_Shade1 - _Shade0) * t2;
+                if (_StepCount > 3.5)
                 {
-                    if (NdotL >= _Threshold2)
-                    {
-                        toonLight = _Shade2;
-                    }
-                    else if (NdotL >= _Threshold1)
-                    {
-                        toonLight = _Shade1;
-                    }
-                    else
-                    {
-                        toonLight = _Shade0;
-                    }
-                }
-                else
-                {
-                    if (NdotL >= _Threshold3)
-                    {
-                        toonLight = _Shade3;
-                    }
-                    else if (NdotL >= _Threshold2)
-                    {
-                        toonLight = _Shade2;
-                    }
-                    else if (NdotL >= _Threshold1)
-                    {
-                        toonLight = _Shade1;
-                    }
-                    else
-                    {
-                        toonLight = _Shade0;
-                    }
+                    float t3 = smoothstep(_Threshold3 - halfWidth, _Threshold3 + halfWidth, NdotL);
+                    toonLight += (_Shade1 - _Shade0) * t3;
                 }
                 // main & ambient light
                 float3 direct = _LightColor0.rgb * toonLight;

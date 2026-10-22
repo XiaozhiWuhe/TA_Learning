@@ -108,6 +108,7 @@ Material:
     - _Threshold1: 0.25
     - _Threshold2: 0.5
     - _Threshold3: 0.75
+    - _TransitionWidth: 0.1
     - _UVSec: 0
     - _ZWrite: 0
     m_Colors:
