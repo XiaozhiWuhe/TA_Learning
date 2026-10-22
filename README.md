@@ -6,7 +6,7 @@
 
 * 卡通渲染，暂时只写了外轮廓描边、纯色块、sss次表面散射和高光。后续会试着做做NPR+PBR效果。
 * 示例图：
-![alt text](image.png)
+* ![alt text](image.png)
 
 ## 02 [毛玻璃](./TA_Learning/Assets/Glass)
 
