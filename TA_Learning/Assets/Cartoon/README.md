@@ -76,7 +76,7 @@
 * 前后效果对比：
     ![alt text](image.png)
     ![alt text](image-1.png)
-* 现在视觉上的问题解决了，接下来得改一下if-else写法（真的很糟糕的写法，当时为了即使提交上作业就没有再细想）。
+* 现在视觉上的问题解决了，接下来得改一下if-else写法（真的很糟糕的写法，当时为了及时提交作业就没有再细想）。
 * smoothstep本身就包含了对范围的判断。所以整段代码优化为：
     ```hlsl
         float toonLight = _Shade0;
