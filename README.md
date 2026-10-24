@@ -32,7 +32,7 @@
 
 * 屏幕破碎效果。
 
-## 08 [碎屏](./TA_Learning/Assets/FurShader)
+## 08 [毛皮着色器](./TA_Learning/Assets/FurShader)
 * 动态毛皮着色器。
 * 示例图：
 * ![alt text](https://media.giphy.com/media/XKowqEKH2WypTrthEc/giphy.gif)
