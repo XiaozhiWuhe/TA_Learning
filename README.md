@@ -36,3 +36,8 @@
 * 动态毛皮着色器。
 * 示例图：
 * ![alt text](https://media.giphy.com/media/XKowqEKH2WypTrthEc/giphy.gif)
+
+## 09 [热度图](./TA_Learning/Assets/HeatMap)
+* 热度图。
+* 示例图：
+* ![alt text](image-1.png)
